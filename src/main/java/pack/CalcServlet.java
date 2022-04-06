@@ -26,11 +26,11 @@ public class CalcServlet extends HttpServlet {
         int secondNumber = Integer.parseInt(req.getParameter("b"));
         int sum = firstNumber + secondNumber;
 
-        if(sum>10){
+        if (sum > 10) {
 //            resp.sendRedirect(req.getContextPath() + "/first");                           // редирект через HTTP на сервлет - /first
-            getServletContext().getRequestDispatcher("/first").forward(req,  resp);       // редирект внутри сервера без выхода на клиента
-        }else{
-            out.printf("<h2>"+req.getContextPath()+"</h2>");
+            getServletContext().getRequestDispatcher("/first").forward(req, resp);       // редирект внутри сервера без выхода на клиента
+        } else {
+            out.printf("<h2>" + req.getContextPath() + "</h2>");
         }
 
         out.printf("<h1>" + String.format("Sum Elements %d + %d = %d", firstNumber, secondNumber, sum) + "</h1>");
