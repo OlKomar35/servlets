@@ -1,7 +1,7 @@
 package pack;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +13,9 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "SecondServlet", urlPatterns = "/second")
 public class SecondServlet extends HttpServlet {
-    private static Logger logger = LoggerFactory.getLogger(SecondServlet.class);
+    private static final Logger logger = LogManager.getLogger(SecondServlet.class); // Trace < Debug < Info < Warn < Error < Fatal
+
+
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

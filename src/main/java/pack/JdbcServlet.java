@@ -1,7 +1,7 @@
 package pack;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,7 +14,8 @@ import java.sql.*;
 
 @WebServlet(name = "JdbcServlet", urlPatterns = "/jdbc_servlet")
 public class JdbcServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(JdbcServlet.class);
+    private static final Logger logger = LogManager.getLogger(JdbcServlet.class); // Trace < Debug < Info < Warn < Error < Fatal
+
     private Connection conn;
 
     @Override
@@ -31,10 +32,10 @@ public class JdbcServlet extends HttpServlet {
         logger.info("Get all tables");
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SHOW TABLES;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM analityc.statistic;");
             while (rs.next()) {
-                String tableName = rs.getString(0);
-                resp.getWriter().println("<p> " + tableName + "</p>");
+                String name = rs.getString(2);
+                resp.getWriter().println("<p> " + name + "</p>");
             }
         } catch (SQLException e) {
             throw new ServletException(e);

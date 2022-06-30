@@ -26,7 +26,7 @@
 <!--    </servlet-mapping>-->
     <context-param>
         <param-name>jdbcConnectionString</param-name>
-        <param-value>jdbc:mysql://localhost:3306/javaee_test_db?createDatabaseIfNotExist=true&amp;allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC
+        <param-value>jdbc:mysql://localhost:3306/analityc?createDatabaseIfNotExist=true&amp;allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC
         </param-value>
     </context-param>
     <context-param>

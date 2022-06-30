@@ -1,7 +1,8 @@
 package pack;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -14,11 +15,16 @@ import java.sql.SQLException;
 
 @WebListener
 public class ContextListener implements ServletContextListener {
-    private Logger logger = LoggerFactory.getLogger(ContextListener.class);
+    private static final Logger logger = LogManager.getLogger(ContextListener.class); // Trace < Debug < Info < Warn < Error < Fatal
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+        } catch (Exception e) {
+            logger.error("driver Not Load " + e);
+        }
         logger.info("Context initialization: " + context.getContextPath());
         String jdbcConnectionString = context.getInitParameter("jdbcConnectionString");
         String username = context.getInitParameter("dbUsername");

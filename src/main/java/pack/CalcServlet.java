@@ -1,7 +1,7 @@
 package pack;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,8 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "CalcServlet", urlPatterns = "/sum")
 public class CalcServlet extends HttpServlet {
-    private static Logger logger = LoggerFactory.getLogger(CalcServlet.class);
+
+    private static final Logger logger = LogManager.getLogger(CalcServlet.class); // Trace < Debug < Info < Warn < Error < Fatal
 
     // GET http://localhost:8080/jee/sum?a=10&b=20
     @Override
